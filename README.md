@@ -22,6 +22,9 @@ The following quickstart assumes **cp-collect** stores domain information within
     git clone https://github.com/apisnetworks/cp-api /var/www/html-api
     cp .env.example .env
     ln -s html-api/public html
+    cd html-api
+    composer install
+    exit
     ```
 
 3. Detect application. Open up logging permissions. Request SSL.
