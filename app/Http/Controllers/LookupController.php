@@ -12,7 +12,7 @@ class LookupController extends Controller
 	{
 		$data = null;
 		try {
-			$record = Domain::whereDomain($domain)->orderBy('status')->firstOrFail();
+			$record = Domain::whereDomain($domain)->where('status','!=','deleted')->orderBy('status')->firstOrFail();
 			$data = $record->server_name;
 		} catch (ModelNotFoundException $e) {
 			$data = __("Account not found on server");
