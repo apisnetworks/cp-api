@@ -8,7 +8,7 @@ consists of three components: (1) reverse proxy **cp-proxy**, (2) aggregation cl
 
 This is the API service that responds with lookup requests for domains.
 
-# API quickstart
+## Quickstart
 
 The following quickstart assumes **cp-collect** stores domain information within a MySQL database running on the same hostname as **cp-api**. **cp-collect** is under the account `collector.mydomain.com` while **cp-api** is under `api.mydomain.com`.
 
@@ -52,13 +52,13 @@ The following quickstart assumes **cp-collect** stores domain information within
     cpcmd scope:set cp.config <SECTION> <NAME> <VALUE>
     ```
 
-    | Section | Name                 | Description                                                  | Sample Value                                        |
-    | ------- | -------------------- | ------------------------------------------------------------ | --------------------------------------------------- |
-    | auth    | secret               | Must be the same across *all* instances. Used to encrypt trusted browsers. | ABCDEFGH                                            |
-    | auth    | server_format        | Optional format that appends a domain to the result of *server_query*. <SERVER> is substituted with result from JSON query. | <SERVER>.mydomain.com                               |
-    | auth    | server_query         | API endpoint that returns a JSON object with the server name. | https://api.mydomain.com/lookup                     |
-    | core    | http_trusted_forward | [cp-proxy](https://github.com/apisnetworks/cp-proxy) service IP address. | 1.2.3.4                                             |
-    | misc    | cp_proxy             | Control panel proxy endpoint that cp-proxy resides on.       | [https://cp.mydomain.com](https://cp.mydomain.com/) |
+    | Section | Name                 | Description | Sample Value                    |
+    | ------- | -------------------- | ------------------------------------------------------------ | ------------------------------- |
+    | auth    | secret               | Must be the same across *all* instances. Used to encrypt trusted browsers. | ABCDEFGH                        |
+    | auth    | server_format        | Optional format that appends a domain to the result of *server_query*. `<SERVER>` is substituted with result from JSON query. | \<SERVER>.mydomain.com           |
+    | auth    | server_query         | API endpoint that returns a JSON object with the server name. | https://api.mydomain.com/lookup |
+    | core    | http_trusted_forward | [cp-proxy](https://github.com/apisnetworks/cp-proxy) service IP address. | 1.2.3.4                         |
+    | misc    | cp_proxy             | Control panel proxy endpoint that cp-proxy resides on.       | https://cp.mydomain.com/        |
 
 Perform a quick test to validate setup works as intended.
 
