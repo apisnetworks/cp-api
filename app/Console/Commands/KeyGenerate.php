@@ -91,11 +91,16 @@
 			$envName = [$this->laravel->basePath(), '.env'];
 			$env = new \Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(...$envName);
 
-			file_put_contents(implode('/', $envName), preg_replace(
-				$this->keyReplacementPattern(),
-				AuthServiceProvider::AUTHORIZATION_ENV . '=' . $key,
-				file_get_contents(implode('/', $envName))
-			));
+			$envData = file_get_contents(implode('/', $envName));
+			$replacement = AuthServiceProvider::AUTHORIZATION_ENV . '=' . $key;
+
+			if (null === env(AuthServiceProvider::AUTHORIZATION_ENV)) {
+				$envData = rtrim($envData) . "\n" . $replacement;
+			} else {
+				$envData = preg_replace($this->keyReplacementPattern(), $replacement, $envData);
+			}
+
+			file_put_contents(implode('/', $envName), $envData);
 
 			$env->bootstrap();
 			if (env(AuthServiceProvider::AUTHORIZATION_ENV) !== $key) {
